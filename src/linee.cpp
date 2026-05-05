@@ -128,7 +128,7 @@ void Get_Out_Line()
             unsigned long tempo = millis();
             while (millis() - tempo <= 200)
             {
-                loopDriverCtrl(135, 220);
+                loopDriverCtrl(225, 220);
             }
         }
 
@@ -138,7 +138,7 @@ void Get_Out_Line()
         unsigned long tempo = millis();
         while (millis() - tempo <= 200)
         {
-            loopDriverCtrl(135, 180);
+            loopDriverCtrl(225, 180);
         }
     }
 
@@ -148,7 +148,7 @@ void Get_Out_Line()
         unsigned long tempo = millis();
         while (millis() - tempo <= 200)
         {
-            loopDriverCtrl(225, 220);
+            loopDriverCtrl(135, 220);
         }
     }
 
@@ -158,7 +158,7 @@ void Get_Out_Line()
         unsigned long tempo = millis();
         while (millis() - tempo <= 200)
         {
-            loopDriverCtrl(225, 180);
+            loopDriverCtrl(135, 180);
         }
     }
     // Linee SUD e EST INT.
