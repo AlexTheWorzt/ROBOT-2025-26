@@ -27,7 +27,6 @@ void attacker()
      }
      else
      {
-        analogWrite(BUZZER_PIN, 0);
         if (ball_in_mouth)
           {
                // unsigned long tempo = millis();
@@ -44,11 +43,11 @@ void attacker()
        
           else 
           {
-               if (attack_angle >= 355 || attack_angle <= 5)
+               if (attack_angle >= 339 || attack_angle <= 15)
                {
                     loopDriverCtrl(attack_angle, speed);
                }
-               else if (attack_angle >= 6 && attack_angle <= 90)
+               else if (attack_angle >= 16 && attack_angle <= 90)
                {
                     attack_angle *= 1.8;
                     loopDriverCtrl(attack_angle, speed);
@@ -68,7 +67,7 @@ void attacker()
                     attack_angle /= 1.3;
                     loopDriverCtrl (attack_angle, speed);
                }
-               else if (attack_angle >= 271 && attack_angle <= 354)
+               else if (attack_angle >= 271 && attack_angle <= 338)
                {
                     attack_angle /= 1.15;
                     loopDriverCtrl (attack_angle, speed);
