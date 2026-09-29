@@ -2,10 +2,19 @@
 #include "pins.h"
 #include "motori.h"
 
+
+/*                                     PIN MOTORI NEGLI ARRAY
+    Inseriamo i pin in A, i pin in B e i pin del PWM all'interno di un array ciascuno, questo sarà molto utile per sfruttarli
+    attraverso i cicli for.
+*/
 int motori_A[4] = {MOT1_A, MOT2_A, MOT3_A, MOT4_A};
 int motori_B[4] = {MOT1_B, MOT2_B, MOT3_B, MOT4_B};
 int motori_PWM[4] = {MOT1_PWM, MOT2_PWM, MOT3_PWM, MOT4_PWM};
 
+
+/*                                     INIZIALIZZAZIONE
+    Inizializza i motori
+*/
 void motori_init()
 {
   for(int i = 0; i < 4; i++)
@@ -17,6 +26,11 @@ void motori_init()
   
 }
 
+/*                                          FAR MUOVERE I MOTORI
+    Questa funzione è lo scheletro del motore, fa muovere il motore corrispondente tramite l'indice e la velocità
+    La velocità va da -255 a 255, con l'if facciamo in modo che se la velocità è <0 gira in senso antiorario
+    se è >0 in senso orario
+*/
 void motori_Mov(int ind /*indice del motore*/, int pwm /*pwm del motore*/)
 {
   if(pwm > 0)
@@ -33,9 +47,13 @@ void motori_Mov(int ind /*indice del motore*/, int pwm /*pwm del motore*/)
   }
 }
 
+/*                                          TEST PER OGNI MOTORE
+    Fa muovere ogni motore per 1 secondo prima in senso orario poi in senso antiorario, utile quando bisogna controllare
+    se i pin di ogni motore sono giusti
+*/
 void MOT_test_4ruote(){
 
-  for (int i=0; i<4; i++){
+  for (int i = 0; i < 4; i++){
   motori_Mov(i, 255);
   delay(1000);
   motori_Mov(i, -255);
@@ -44,6 +62,12 @@ void MOT_test_4ruote(){
   }
 }
 
+/*                                          TEST BRUTALE DELLE DIAGONALI
+    Fa muovere il robot nelle 4 diagonali dando i comandi direttamente ai singoli motori.
+    "Brutale" perchè da un impulso diretto ai motori, mentre c'è un'altro test delle diagonali migliore che 
+    sfrutta la formula del moto. Questo test è poco utilizzato, solo quando si ha problemi col moto
+    
+*/
 void MOT_test_diagonali(){
    //diagonale in alto a destra
   for(int i = 0; i < 4; i+=2)
@@ -117,6 +141,10 @@ void MOT_test_diagonali(){
   delay(1000);*/
 }
 
+/*                                           TEST BRUTALE QUADRATO
+    Stesso test delle diagonali, solo che fa muovere il robot come un quadrato
+    Anche di questo c'è un test migliore dopo nel moto
+*/
 void MOT_test_quadrato(){
 
   //dritto in alto
@@ -176,11 +204,14 @@ void MOT_test_quadrato(){
 
 } 
 
+/*                                          TEST PER FAR ANDARE IL ROBOT PIANO
+    Fa girare i motori lenti per vedere se il problema sono i motori o le ruote fisiche
+*/
 void MOT_testLento()
 {
   for(int i = 0; i < 4; i++)
   {
-    motori_Mov(i, 25);
+    motori_Mov(i, 75);
   }
 }
 

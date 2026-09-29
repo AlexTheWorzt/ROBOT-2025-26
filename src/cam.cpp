@@ -27,6 +27,8 @@ float posizione_robot = VAL_ERR;
 
 int valore_switch = 0;
 
+
+
 void init_cam() {
   pinMode(swtch_porta, INPUT_PULLUP);
   SERIAL_CAM.begin(19200);
@@ -35,14 +37,13 @@ void init_cam() {
 }
 
 void leggi_telecamera() {
-  // Leggi fino a newline (il protocollo OpenMV termina con \n)
+
   if (SERIAL_CAM.available()) {
+
     char line[64];
     int len = SERIAL_CAM.readBytesUntil('\n', line, sizeof(line) - 1);
     if (len > 0) {
-      line[len] = '\0';  // Null-terminate
-      
-      // Parsing: Y<ang>,<area>yB<ang>,<area>b
+      line[len] = '\0';
       char *ptr = line;
       
       // Trova Y
@@ -81,13 +82,9 @@ void leggi_telecamera() {
   
   if (millis() - tempo_blu < 500) {
     angoloPortaBlu = ultimo_angoloblu;
-    // Serial.print("Angolo porta Blu: ");
-    // Serial.println(angoloPortaBlu);
     distanzaPortaBlu = distanzaPortaBlu;
   } else {
     angoloPortaBlu = VAL_ERR;
-    // Serial.print("Angolo porta Blu: ");
-    // Serial.println(angoloPortaBlu);
   }
 
   // Leggi switch

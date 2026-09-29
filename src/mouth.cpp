@@ -12,7 +12,7 @@ void init_mouth(){
 
 bool mouth_sens(){
     valore = analogRead(SENSORE_BOCCA);
-    bool valoreb = (valore < 970) ?  true : false;
+    bool valoreb = (valore < 1000) ?  true : false;
     // Serial.println(valoreb);
     return valoreb;
 }

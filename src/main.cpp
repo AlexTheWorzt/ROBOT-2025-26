@@ -27,8 +27,8 @@ void setup(){
 }
 
 void loop(){
-
-
+  // attacker();
+  Get_Out_Line();
 
 
   // MOT_test_4ruote();
@@ -36,36 +36,27 @@ void loop(){
   //MOT_test_quadrato();
   //Serial.println(read_imu());
   //Serial.println("oooo");
-  //loopDriverCtrl(0, 100);
+  // loopDriverCtrl(0, 100);
   // test_imu();
   // test_inter_imu();
   //read_imu();
   // test_diagonali();
   //test_quadrato();
-  // test_Ball();
-  // test_test_Ball();
   // line_Read_val();
   // test_line();
-  Get_Out_Line();
-  // loopDriverCtrl(0, 200);
+  // loopDriverCtrl(0, 150);
   // test_palla();
-  attacker();
   // test_porta();
   // leggi_telecamera();
   // test_mouth();
   // mouth_sens();
   // kicker_test(); 
-  // kicker_test_mouth()
+  // kicker_test_mouth();
   // loopDriverCtrl_distortion(0, 0);
 }
 
 
 /*                                                 CAMBIAMENTI EFFETTUATI
-                                      Messo la distanza al kicker prima di tirare
-                                       diminuita soglia kicker
-
-
-
 
 
 

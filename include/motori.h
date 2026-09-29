@@ -1,7 +1,6 @@
 #ifndef MOTORI_H
 #define MOTORI_H
 
-#define generic_pwm 75
 
 void motori_init();
 void motori_Mov(int ind, int pwm);
