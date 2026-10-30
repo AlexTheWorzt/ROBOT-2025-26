@@ -2,11 +2,11 @@
 #include "pins.h"
 #include "motori.h"
 
-
 /*                                     PIN MOTORI NEGLI ARRAY
     Inseriamo i pin in A, i pin in B e i pin del PWM all'interno di un array ciascuno, questo sarà molto utile per sfruttarli
     attraverso i cicli for.
 */
+
 int motori_A[4] = {MOT1_A, MOT2_A, MOT3_A, MOT4_A};
 int motori_B[4] = {MOT1_B, MOT2_B, MOT3_B, MOT4_B};
 int motori_PWM[4] = {MOT1_PWM, MOT2_PWM, MOT3_PWM, MOT4_PWM};
@@ -15,9 +15,10 @@ int motori_PWM[4] = {MOT1_PWM, MOT2_PWM, MOT3_PWM, MOT4_PWM};
 /*                                     INIZIALIZZAZIONE
     Inizializza i motori
 */
+
 void motori_init()
 {
-  for(int i = 0; i < 4; i++)
+    for(int i = 0; i < 4; i++)
   {
     pinMode(motori_A[i], OUTPUT);
     pinMode(motori_B[i], OUTPUT);
@@ -31,6 +32,7 @@ void motori_init()
     La velocità va da -255 a 255, con l'if facciamo in modo che se la velocità è <0 gira in senso antiorario
     se è >0 in senso orario
 */
+
 void motori_Mov(int ind /*indice del motore*/, int pwm /*pwm del motore*/)
 {
   if(pwm > 0)
@@ -51,9 +53,10 @@ void motori_Mov(int ind /*indice del motore*/, int pwm /*pwm del motore*/)
     Fa muovere ogni motore per 1 secondo prima in senso orario poi in senso antiorario, utile quando bisogna controllare
     se i pin di ogni motore sono giusti
 */
+
 void MOT_test_4ruote(){
 
-  for (int i = 0; i < 4; i++){
+  for (int i=0; i<4; i++){
   motori_Mov(i, 255);
   delay(1000);
   motori_Mov(i, -255);
@@ -61,6 +64,7 @@ void MOT_test_4ruote(){
   motori_Mov(i, 0);
   }
 }
+
 
 /*                                          TEST BRUTALE DELLE DIAGONALI
     Fa muovere il robot nelle 4 diagonali dando i comandi direttamente ai singoli motori.
@@ -121,24 +125,6 @@ void MOT_test_diagonali(){
   }
   delay(1000);
 
-  /*for(int i = 0; i < 2; i++)
-  {
-    motori_Mov(i, generic_pwm);
-    motori_Mov(i + 2, generic_pwm * -1);
-    delay(1000);
-    motori_Mov(i, 0);
-    motori_Mov(i + 2, 0);
-  }
-  delay(1000);
-  for(int i = 0; i < 2; i++)
-  {
-    motori_Mov(i, generic_pwm * -1);
-    motori_Mov(i + 2, generic_pwm);
-    delay(1000);
-    motori_Mov(i, 0);
-    motori_Mov(i + 2, 0);
-  }
-  delay(1000);*/
 }
 
 /*                                           TEST BRUTALE QUADRATO
@@ -177,31 +163,15 @@ void MOT_test_quadrato(){
   }
   delay(1000);
 
-  //diagonale in basso a destra
+  //dritto a sinistra
   for(int i = 1; i < 4; i+=2)
   {
-    if(i==0 || i==2){
-      motori_Mov(i, 50);
+    if(i==1 || i==3){
+      motori_Mov(i, -50);
     }
-    else motori_Mov(i, -50);
+    else motori_Mov(i, 50);
   }
   delay(1000); 
-
-   /* int d;
-  for(int i = 0; i <= 2; i += 2)
-  {
-    if(i == 0){
-      d = 1; 
-    }
-    else
-    {
-      d = -1;
-    }
-    motori_Mov(i, generic_pwm * d);
-    motori_Mov(i + 1, generic_pwm * d);
-
-  }*/
-
 } 
 
 /*                                          TEST PER FAR ANDARE IL ROBOT PIANO
@@ -215,3 +185,41 @@ void MOT_testLento()
   }
 }
 
+void MOT_test_triangolo()
+{
+  // diagonale in alto a destra
+  for(int i = 0; i < 4; i+=2)
+  {
+    if(i==0){
+      motori_Mov(i, -100);
+    }
+    else if(i==2){
+      motori_Mov(i, 100);
+    }
+    else motori_Mov(i, 0); 
+  }
+  delay(1000);
+
+  // diagonale in basso a destra
+  for(int i = 1; i < 4; i+=2)
+  {
+    if(i==1){
+      motori_Mov(i, 100);
+    }
+    else if(i==3){
+      motori_Mov(i, -100);
+    }
+    else motori_Mov(i, 0); 
+  }
+  delay(1000);
+
+  //dritto a sinistra
+  for(int i = 1; i < 4; i+=2)
+  {
+    if(i==1 || i==3){
+      motori_Mov(i, -50);
+    }
+    else motori_Mov(i, 50);
+  }
+  delay(1000);
+}
